@@ -1,0 +1,22 @@
+# Blender 5.1.0 MTL File: 'None'
+# www.blender.org
+
+newmtl Pii_ROKON_ALOLA_body
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/Users/miste/Desktop/pix/pix (alolan)/Alolan Vulpix/Pii_ROKON_ALOLA_body.png
+map_d C:/Users/miste/Desktop/pix/pix (alolan)/Alolan Vulpix/Pii_ROKON_ALOLA_body.png
+
+newmtl Pii_ROKON_ALOLA_eye
+Ns 200.000000
+Ka 1.000000 1.000000 1.000000
+Ks 1.000000 1.000000 1.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+illum 2
+map_Kd C:/Users/miste/Desktop/pix/pix (alolan)/Alolan Vulpix/Pii_ROKON_ALOLA_eye.png
+map_d C:/Users/miste/Desktop/pix/pix (alolan)/Alolan Vulpix/Pii_ROKON_ALOLA_eye.png
