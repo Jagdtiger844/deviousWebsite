@@ -6,7 +6,6 @@
 
 int screenWidth = 800;
 int screenHeight = 450;
-int monitor = 0;
 
 Camera mainCamera = { 
     .position = (Vector3){0.0f, 10.0f, 100.0f},
@@ -41,8 +40,6 @@ int main(void) {
     PlayMusicStream(razormind);
     
     SetMusicVolume(razormind, .5f);
-    
-    monitor = GetCurrentMonitor();
     
     emscripten_set_main_loop(UpdateDrawFrame, 0, 1);
     
