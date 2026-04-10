@@ -77,13 +77,18 @@ void UpdateDrawFrame(void) {
             
         EndMode3D();
         
-        const char* loadingText = "WEBSITE IN PROGRESS";
+        const char* loadingText = "ASSAULT IN PROGRESS";
         float loadingTextSize = MeasureText(loadingText, 50);
         float initialTextPos = (GetScreenWidth() - loadingTextSize) / 2;
         float spaceOffset = loadingTextSize / (float)strlen(loadingText);
+        Color c = { 0 };
+        c.r = 255 * (sinf(DEG2RAD * (floatation)) + 1) / 2;
+        c.g = 255 * (sinf(DEG2RAD * (floatation + 120)) + 1) / 2;
+        c.b = 255 * (sinf(DEG2RAD * (floatation + 240)) + 1) / 2;
+        c.a = 255;
         
         for (int i = 0; i < strlen(loadingText); i++) {
-            DrawTextCodepoint(font, (int)(loadingText[i]), (Vector2){initialTextPos, GetScreenHeight() / 2 + 60 + (10 * sinf(DEG2RAD * (floatation + (10 * i))))}, 50.0f, WHITE);
+            DrawTextCodepoint(font, (int)(loadingText[i]), (Vector2){initialTextPos, GetScreenHeight() / 2 + 60 + (10 * sinf(DEG2RAD * (floatation + (10 * i))))}, 50.0f, c);
             initialTextPos += spaceOffset + 2;
         }
 
