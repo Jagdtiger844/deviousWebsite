@@ -21,6 +21,7 @@ Vector3 pixPosition = { 0.0f, 0.0f, 0.0f };
 
 float pixRotation = 0.0f;
 Font font = { 0 };
+Music razormind = { 0 };
 
 void UpdateDrawFrame(void);
 
@@ -29,9 +30,17 @@ int main(void) {
     InitWindow(screenWidth, screenHeight, "raylib [core] example - basic window");
     SetWindowState(FLAG_WINDOW_RESIZABLE);
     
+    InitAudioDevice();
+    
     pix = LoadModel("./resources/pix.glb");
     
     font = LoadFont("./resources/CascadiaMono-Regular.ttf");
+    
+    razormind = LoadMusicStream("./resources/razormind.mp3");
+    
+    PlayMusicStream(razormind);
+    
+    SetMusicVolume(razormind, .5f);
     
     monitor = GetCurrentMonitor();
     
@@ -39,16 +48,35 @@ int main(void) {
     
     CloseWindow();
     
+    UnloadMusicStream(razormind);
+    UnloadModel(pix);
+    
+    CloseAudioDevice();
     
     return 0;
 }
 
 Vector3 pixRotationEuler = (Vector3){270.0f, 0.0f, 0.0f };
 float floatation = 0.0f;
+bool razormindStopped = false;
 
 void UpdateDrawFrame(void) {
     
+    UpdateMusicStream(razormind);
+    
     MaximizeWindow();
+    
+    if (IsKeyPressed(KEY_SPACE)) {
+        if (razormindStopped)
+            PlayMusicStream(razormind);
+        else
+            StopMusicStream(razormind);
+        
+        razormindStopped = !razormindStopped;
+    } else if (IsKeyPressed(KEY_BACKSPACE)) {
+        StopMusicStream(razormind);
+        PlayMusicStream(razormind);
+    }
     
     floatation += 120.0f * GetFrameTime();
     pixRotationEuler.y += 120.0f * GetFrameTime();
@@ -91,6 +119,8 @@ void UpdateDrawFrame(void) {
             DrawTextCodepoint(font, (int)(loadingText[i]), (Vector2){initialTextPos, GetScreenHeight() / 2 + 60 + (10 * sinf(DEG2RAD * (floatation + (10 * i))))}, 50.0f, c);
             initialTextPos += spaceOffset + 2;
         }
+        
+        DrawText("Space to STOP and PLAY. Backspace to RESTART.", 10, 10, 20, WHITE);
 
     EndDrawing();
 }
